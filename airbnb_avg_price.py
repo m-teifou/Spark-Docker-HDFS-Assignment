@@ -12,8 +12,6 @@ def get_avg_price():
     # read csv file as rdd
     airbnb_txt=sc.textFile("spark://master:7077/tmp/MontrealAirBnB.csv", minPartitions=2)
     
-#    print('first line' , airbnb_txt.take(1))
-    
     #remove header from rdd
     tagsheader = airbnb_txt.first() 
     header = sc.parallelize([tagsheader])
@@ -40,8 +38,8 @@ def get_avg_price():
     
     avg_price_per_neighbourhood.saveAsTextFile("spark://master:7077/tmp/avg_price_rdd")
 
-    #for x in avg_price_per_neighbourhood.collect():
-    #    print(x)
+    for x in avg_price_per_neighbourhood.collect():
+        print(x)
 
     sc.stop()
 
