@@ -16,6 +16,11 @@ docker service scale spark_worker=2
 
     docker cp airbnb_avg_price.py $CONTAINER_ID:/tmp
     docker cp MontrealAirBnB.csv $CONTAINER_ID:/tmp
+    
+    for worker_id in $(docker ps --filter name=worker --format "{{.ID}}")
+    do
+     docker cp MontrealAirBnB.csv $worker_id:/tmp
+    done
 
 5- execute the code
 
