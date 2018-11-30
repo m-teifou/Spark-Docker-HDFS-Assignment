@@ -1,0 +1,16 @@
+
+2018-11-30 19:54:37 INFO  SparkContext:54 - Created broadcast 0 from textFile at NativeMethodAccessorImpl.java:0
+Traceback (most recent call last):
+  File "/tmp/airbnb_avg_price.py", line 49, in <module>
+    get_avg_price()
+  File "/tmp/airbnb_avg_price.py", line 18, in get_avg_price
+    tagsheader = airbnb_txt.first() 
+  File "/usr/spark-2.3.0/python/lib/pyspark.zip/pyspark/rdd.py", line 1376, in first
+  File "/usr/spark-2.3.0/python/lib/pyspark.zip/pyspark/rdd.py", line 1328, in take
+  File "/usr/spark-2.3.0/python/lib/pyspark.zip/pyspark/rdd.py", line 401, in getNumPartitions
+  File "/usr/local/lib/python3.4/dist-packages/py4j-0.10.6-py3.4.egg/py4j/java_gateway.py", line 1160, in __call__
+    answer, self.gateway_client, self.target_id, self.name)
+  File "/usr/local/lib/python3.4/dist-packages/py4j-0.10.6-py3.4.egg/py4j/protocol.py", line 320, in get_return_value
+    format(target_id, ".", name), value)
+py4j.protocol.Py4JJavaError: An error occurred while calling o20.partitions.
+: java.io.IOException: No FileSystem for scheme: spark
