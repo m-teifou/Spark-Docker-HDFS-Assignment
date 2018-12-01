@@ -32,11 +32,12 @@ docker service scale spark_worker=2
 
 6- Explore the Applications on http://localhost:8080/
 
-
 7- remove services
+
       sudo docker stack rm spark
 
 8- reset CONTAINER_ID
+
           unset CONTAINER_ID
           
     
