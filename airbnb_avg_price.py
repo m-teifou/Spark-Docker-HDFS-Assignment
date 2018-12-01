@@ -1,6 +1,6 @@
 try:
     from pyspark import SparkContext, SparkConf
-    from operator import add
+    import operator
 except Exception as e:
     print(e)
 
@@ -10,7 +10,7 @@ def get_avg_price():
     sc = SparkContext(conf=conf)
 
     # read csv file as rdd
-    airbnb_txt=sc.textFile("spark://master:7077/tmp/MontrealAirBnB.csv", minPartitions=2)
+    airbnb_txt=sc.textFile("/tmp/MontrealAirBnB.csv", minPartitions=2)
     
     #remove header from rdd
     tagsheader = airbnb_txt.first() 
@@ -31,15 +31,10 @@ def get_avg_price():
     neighbourhood_price_lst = n_count.join(price_lst_sum)
     
     #calculate average price per neighbourhood
-    avg_price_per_neighbourhood = count_price_lst.map(lambda x: (x[0], (x[1][1]/x[1][0])))
+    avg_price_per_neighbourhood = neighbourhood_price_lst.map(lambda x: (x[0], (x[1][1]/x[1][0])))
     
     # output results    
-    #avg_price_per_neighbourhood.saveAsTextFile("hdfs://hadoop:8020/user/me/avg_price_rdd")
-    
-    avg_price_per_neighbourhood.saveAsTextFile("spark://master:7077/tmp/avg_price_rdd")
-
-    for x in avg_price_per_neighbourhood.collect():
-        print(x)
+    avg_price_per_neighbourhood.saveAsTextFile("/tmp/avg_price_rdd")
 
     sc.stop()
 
