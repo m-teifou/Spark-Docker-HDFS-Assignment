@@ -29,8 +29,14 @@ docker service scale spark_worker=2
     --master spark://master:7077 \
     --class endpoint \
     /tmp/airbnb_avg_price.py
-```
 
-* Explore the Applications on http://localhost:8080/
+6- Explore the Applications on http://localhost:8080/
 
 
+7- remove services
+      sudo docker stack rm spark
+
+8- reset CONTAINER_ID
+          unset CONTAINER_ID
+          
+    
